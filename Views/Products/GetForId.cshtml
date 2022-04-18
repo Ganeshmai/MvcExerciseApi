@@ -1,0 +1,54 @@
+﻿@model MVC_2Excerise.Models.Product
+
+@{
+    ViewBag.Title = "GetForId";
+}
+
+<h2>GetForId</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UnitId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Save", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "GetAll")
+</p>
