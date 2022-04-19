@@ -1,26 +1,40 @@
 ﻿@model MVC_2Excerise.Models.Product
 
+
+
+
 @{
     ViewBag.Title = "Save";
 }
+<script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="/Scripts/jquery.validate.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+@*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>*@
+@*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
 
 <h2>Save</h2>
+<style>
+    .ErrorMessage {
+        color: red;
+    }
+</style>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Product</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "", new { @class = "ErrorMessage" })
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "ErrorMessage" })
             </div>
         </div>
 
@@ -28,25 +42,59 @@
             @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "ErrorMessage" })
             </div>
         </div>
 
+
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.TextBoxFor(m => m.CategoryId, new { @class = "form-control" })*@
             <div class="col-md-10">
-                @Html.EditorFor(model =>model.CategoryId,  new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                <select class=" form-control" id="CategoryId" name="CategoryId">
+                    <option value=""> |--PleaseSelect--</option>
+                    @foreach (var item in ViewBag.cats)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
             </div>
         </div>
 
+
+
         <div class="form-group">
-            @Html.LabelFor(model => model.UnitId, "UnitId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.UnitId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.TextBoxFor(m => m.CategoryId, new { @class = "form-control" })*@
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UnitId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UnitId, "", new { @class = "text-danger" })
+                <select class=" form-control" id="UnitId" name="UnitId">
+                    <option value=""> |--PleaseSelect--</option>
+                    @foreach (var item in ViewBag.Uid)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
             </div>
         </div>
+
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.DropDownList("CategoryId", (IEnumerable<SelectListItem>)ViewBag.catIds, "---select---", new { @class = "form-control" })
+                    @Html.DropDownListFor(model=>model.CategoryId, (IEnumerable<SelectListItem>)ViewBag.catIds, "---select---", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "ErrorMessage" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.UnitId, "UnitId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UnitId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UnitId, "", new { @class = "ErrorMessage" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -60,8 +108,8 @@
     @Html.ActionLink("Back to List", "GetAll")
 </div>
 
-@section Scripts{
+@section Scripts
+{
 
-
-    
-    }
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -38,6 +38,7 @@ namespace MVC_2Excerise.Controllers
         {
             using (ProductDbEntity con = new ProductDbEntity())
             {
+               
                 con.Products.Add(product);
                 con.SaveChanges();
             }

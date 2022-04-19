@@ -7,8 +7,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body style="background-color:aqua">
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body style="background-color:lightblue;color:firebrick">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:wheat;color:black">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,7 +20,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Categories","GetAll","Categories", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Categories", "GetAll", "Categories", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Units", "GetAll", "Units", new { area = "" }, null)</li>
                 </ul>
             </div>
@@ -36,6 +36,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
     @RenderSection("scripts", required: false)
+   
 </body>
 </html>

@@ -10,9 +10,11 @@ namespace MVC_2Excerise.Controllers
 {
     public class ProductsController : Controller
     {
+
         // GET: Products
         public ActionResult GetAll()
         {
+            
             IEnumerable<Product> products;
             HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Product").Result;
             products = response.Content.ReadAsAsync<IEnumerable<Product>>().Result;
@@ -27,54 +29,55 @@ namespace MVC_2Excerise.Controllers
         }
         public ActionResult Save(int id = 0)
         {
+           
+            ProductDbEntity con = new ProductDbEntity();
+            ViewBag.cats = con.Categories.ToList();
+            ViewBag.Uid = con .Units.ToList();
+
             if (id == 0)
+            {
+
                 return View(new Product());
+            }
             else
             {
                 HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Product/" + id.ToString()).Result;
+
+
+               // GlobalVariables globalVariables = new GlobalVariables();
+              //  ViewBag.catIds = GetAllCategoryId().Select(x => new SelectListItem { Value = x.Id.ToString() });
+               
                 return View(response.Content.ReadAsAsync<Product>().Result);
+
             }
         }
 
         [HttpPost]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Save(Product product)
         {
-            if (product.Id == 0)
+            ProductDbEntity con = new ProductDbEntity();
+            ViewBag.cats = con.Categories.ToList();
+            ViewBag.Uid = con.Units.ToList();
+
+            if (ModelState.IsValid)
             {
-                HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Product", product).Result;
+                if (product.Id == 0)
+                {
+                    HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Product", product).Result;
+                }
+                else
+                {
+                    HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Product/" + product.Id, product).Result;
+                }
+                return RedirectToAction("GetAll");
+
             }
-            else
-            {
-                HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Product/" + product.Id,product).Result;
-            }
-            return RedirectToAction("GetAll");
+            return View();
+           
         }
 
-        //     [HttpPost]
-        //// [HttpPut]
-        // public ActionResult Save(int id = 0,Product product=null)
-        // {
-        //     if (id == 0)
-        //     {
-        //         HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Product", product).Result;
-        //         return RedirectToAction("GetAll");
-        //     }
-        //     else if(id >=0 && product==null)
-        //     {
-        //         HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Category/" + id.ToString()).Result;
-
-        //         return View(response.Content.ReadAsAsync<Category>().Result);
-        //     }
-
-        //     else if (id >= 0 && product != null)
-        //     {
-        //         HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Category/" + product.Id, product).Result;
-        //         return RedirectToAction("GetALL");
-        //     }
-
-
-        //     return View("GetAll");
-        // }
+    
 
         public ActionResult Delete(int id)
         {
