@@ -7,8 +7,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body style="background-color:lightblue;color:firebrick">
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:wheat;color:black">
+<body style="background-color:lawngreen;color:black">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:chocolate;color:chartreuse">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,7 +27,9 @@
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+        <b>
+            @RenderBody()
+        </b>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Month -@DateTime.Now.Year - My MVC WEB API APPLICATION</p>

@@ -8,7 +8,7 @@ using MVC_2Excerise.Models;
 
 namespace MVC_2Excerise.Controllers
 {
-    public class UnitController : ApiController
+    public class UnitApiController : ApiController
     {
 
         public IEnumerable<Unit> GetAll()

@@ -16,13 +16,14 @@ namespace MVC_2Excerise.Controllers
         {
             
             IEnumerable<Product> products;
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Product").Result;
+            
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("ProductApi").Result;
             products = response.Content.ReadAsAsync<IEnumerable<Product>>().Result;
             return View(products);
         }
         public ActionResult GetForId(int id)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Product/" + id.ToString()).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("ProductApi/" + id.ToString()).Result;
             return View(response.Content.ReadAsAsync<Product>().Result);
 
 
@@ -41,7 +42,7 @@ namespace MVC_2Excerise.Controllers
             }
             else
             {
-                HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Product/" + id.ToString()).Result;
+                HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("ProductApi/" + id.ToString()).Result;
 
 
                // GlobalVariables globalVariables = new GlobalVariables();
@@ -64,11 +65,11 @@ namespace MVC_2Excerise.Controllers
             {
                 if (product.Id == 0)
                 {
-                    HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Product", product).Result;
+                    HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("ProductApi", product).Result;
                 }
                 else
                 {
-                    HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Product/" + product.Id, product).Result;
+                    HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("ProductApi/" + product.Id, product).Result;
                 }
                 return RedirectToAction("GetAll");
 
@@ -81,7 +82,7 @@ namespace MVC_2Excerise.Controllers
 
         public ActionResult Delete(int id)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Product/" + id.ToString()).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("ProductApi/" + id.ToString()).Result;
 
             return View(response.Content.ReadAsAsync<Product>().Result);
         }
@@ -89,7 +90,7 @@ namespace MVC_2Excerise.Controllers
         public ActionResult Delete(Product product)
         {
 
-            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("Product/" + product.Id).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("ProductApi/" + product.Id).Result;
 
             return RedirectToAction("GetAll");
         }

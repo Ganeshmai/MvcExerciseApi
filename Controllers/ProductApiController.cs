@@ -8,7 +8,7 @@ using MVC_2Excerise.Models;
 
 namespace MVC_2Excerise.Controllers
 {
-    public class ProductController : ApiController
+    public class ProductApiController : ApiController
     {
 
         [HttpGet]
@@ -66,51 +66,53 @@ namespace MVC_2Excerise.Controllers
             }
         }
 
-            // POST: api/Product
-            //  [HttpPost]
-            ////  [HttpPut]
-            //  public HttpResponseMessage Save(Product values=null, int id = 0)//INsert and update on same
-            //  {
-            //      if (id == 0)
-            //      {
-            //          using (ProductDbEntity db = new ProductDbEntity())
-            //          {
-            //              db.Products.Add(values);
-            //              db.SaveChanges();
-            //          }
+        #region ApiProduct
+        // POST: api/Product
+        //  [HttpPost]
+        ////  [HttpPut]
+        //  public HttpResponseMessage Save(Product values=null, int id = 0)//INsert and update on same
+        //  {
+        //      if (id == 0)
+        //      {
+        //          using (ProductDbEntity db = new ProductDbEntity())
+        //          {
+        //              db.Products.Add(values);
+        //              db.SaveChanges();
+        //          }
 
-            //      }
-            //      else
-            //      {
-            //          using (ProductDbEntity db = new ProductDbEntity())
-            //          {
-            //              var entity = db.Products.FirstOrDefault(i => i.Id == id);
+        //      }
+        //      else
+        //      {
+        //          using (ProductDbEntity db = new ProductDbEntity())
+        //          {
+        //              var entity = db.Products.FirstOrDefault(i => i.Id == id);
 
-            //              if (entity != null)
-            //              {
-            //                  entity.Name = values.Name;
-            //                  entity.CategoryId = values.CategoryId;
-            //                  entity.Price = values.Price;
-            //                  entity.UnitId = values.UnitId;
+        //              if (entity != null)
+        //              {
+        //                  entity.Name = values.Name;
+        //                  entity.CategoryId = values.CategoryId;
+        //                  entity.Price = values.Price;
+        //                  entity.UnitId = values.UnitId;
 
-            //                  db.SaveChanges();
+        //                  db.SaveChanges();
 
-            //              }
-            //              return Request.CreateResponse(HttpStatusCode.OK, entity);
+        //              }
+        //              return Request.CreateResponse(HttpStatusCode.OK, entity);
 
-            //          }
-            //      }
-            //      return Request.CreateResponse(HttpStatusCode.OK);
+        //          }
+        //      }
+        //      return Request.CreateResponse(HttpStatusCode.OK);
 
-            //  }
+        //  }
 
-            // PUT: api/Product/5
-            //public void Put(int id, [FromBody]string value)
-            //{
-            //}
+        // PUT: api/Product/5
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
+        #endregion
 
-            // DELETE: api/Product/5
-            [HttpDelete]
+        // DELETE: api/Product/5
+        [HttpDelete]
             public HttpResponseMessage Delete(int id)
             {
 

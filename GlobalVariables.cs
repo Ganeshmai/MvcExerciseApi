@@ -17,15 +17,14 @@ namespace MVC_2Excerise
             WebApiClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
          
         }
-        public IEnumerable <Category> GetAllCategoryId()
-        {
-            HttpResponseMessage response = WebApiClient.GetAsync("Category/GetAll").Result;
-            if (response != null)
-                return response.Content.ReadAsAsync<IEnumerable<Category>>().Result;
-                  
-            return null;
-        }
-        
 
+        //public IEnumerable <Category> GetAllCategoryId()
+        //{
+        //    HttpResponseMessage response = WebApiClient.GetAsync("Category/GetAll").Result;
+        //    if (response != null)
+        //        return response.Content.ReadAsAsync<IEnumerable<Category>>().Result;
+                  
+        //    return null;
+        //}
     }
 }

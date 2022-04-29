@@ -14,14 +14,14 @@ namespace MVC_2Excerise.Controllers
         public ActionResult GetAll()
         {
             IEnumerable<Category> cat;
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Category").Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("CategoryApi").Result;
             cat = response.Content.ReadAsAsync<IEnumerable<Category>>().Result;
             return View(cat);
         }
 
         public ActionResult GetForId(int id)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Category/" + id.ToString()).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("CategoryApi/" + id.ToString()).Result;
             return View(response.Content.ReadAsAsync<Category>().Result);
 
 
@@ -34,26 +34,26 @@ namespace MVC_2Excerise.Controllers
         [HttpPost]
         public ActionResult Insert(Category category)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Category", category).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("CategoryApi", category).Result;
             return RedirectToAction("GetAll");
         }
 
         public ActionResult Update(int id)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Category/" + id.ToString()).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("CategoryApi/" + id.ToString()).Result;
 
             return View(response.Content.ReadAsAsync<Category>().Result);
         }
         [HttpPost]
         public ActionResult Update(Category category)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Category/" + category.Id, category).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("CategoryApi/" + category.Id, category).Result;
             return RedirectToAction("GetALL");
         }
 
         public ActionResult Delete(int id)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Category/" + id.ToString()).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("CategoryApi/" + id.ToString()).Result;
 
             return View(response.Content.ReadAsAsync<Category>().Result);
         }
@@ -61,7 +61,7 @@ namespace MVC_2Excerise.Controllers
         public ActionResult Delete(Category category)
         {
 
-            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("Category/" + category.Id).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("CategoryApi/" + category.Id).Result;
 
             return RedirectToAction("GetAll");
         }

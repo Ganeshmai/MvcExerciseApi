@@ -14,14 +14,14 @@ namespace MVC_2Excerise.Controllers
         public ActionResult GetAll()
         {
             IEnumerable<Unit> cat;
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Unit").Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("UnitApi").Result;
             cat = response.Content.ReadAsAsync<IEnumerable<Unit>>().Result;
             return View(cat);
         }
 
         public ActionResult GetForId(int id)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Unit/" + id.ToString()).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("UnitApi/" + id.ToString()).Result;
             return View(response.Content.ReadAsAsync<Unit>().Result);
 
 
@@ -34,26 +34,26 @@ namespace MVC_2Excerise.Controllers
         [HttpPost]
         public ActionResult Insert(Unit Unit)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Unit", Unit).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("UnitApi", Unit).Result;
             return RedirectToAction("GetAll");
         }
 
         public ActionResult Update(int id)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Unit/" + id.ToString()).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("UnitApi/" + id.ToString()).Result;
 
             return View(response.Content.ReadAsAsync<Unit>().Result);
         }
         [HttpPost]
         public ActionResult Update(Unit Unit)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Unit/" + Unit.Id, Unit).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("UnitApi/" + Unit.Id, Unit).Result;
             return RedirectToAction("GetALL");
         }
 
         public ActionResult Delete(int id)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Unit/" + id.ToString()).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("UnitApi/" + id.ToString()).Result;
 
             return View(response.Content.ReadAsAsync<Unit>().Result);
         }
@@ -61,7 +61,7 @@ namespace MVC_2Excerise.Controllers
         public ActionResult Delete(Unit Unit)
         {
 
-            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("Unit/" + Unit.Id).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("UnitApi/" + Unit.Id).Result;
 
             return RedirectToAction("GetAll");
         }
