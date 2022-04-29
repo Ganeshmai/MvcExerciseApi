@@ -2,6 +2,10 @@
 
 MVC and API Course Exercise
 
+
+This is Mvc web API project used store and retrive data from Db and do crud operations ,by relations of products ,category and units
+which uses web ui to do operations and see.
+
 -project Problem State-
 
 [HttpGet]
@@ -31,5 +35,4 @@ Unit – UnitId, Name
 
 
 ---------
-This is Mvc web API project used store and retrive data from Db and do crud operations ,by relations of products ,category and units
-which uses web ui to do operations and see.
+
